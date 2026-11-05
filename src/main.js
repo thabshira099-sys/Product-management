@@ -1,15 +1,21 @@
 let productName = document.getElementById("productName");
 let productDescription = document.getElementById("productDescription");
 let productPrice = document.getElementById("productPrice");
+productPrice.addEventListener("input",function(){
+    this.value=this.value.replace(/[^0-9]/g,'');
+})
 let btn = document.getElementById("btn");
 let taskList = document.getElementById("taskList");
 let cardEdit=null;
 btn.addEventListener("click", function () {
-    if(productName.value==""||productPrice.value=="")
-    {
-        alert("please fill the  required  fields");
+    if(productName.value==""||productPrice.value==""){
+        productName.style.border="2px solid red";
+        productName.placeholder="*please enter a product name";
+        productPrice.style.border="2px solid red";  
+        productPrice.placeholder="*please enter a product price";
         return;
     }
+   
     let name = productName.value;
     let desc = productDescription.value;
     let price = productPrice.value;
@@ -22,14 +28,15 @@ btn.addEventListener("click", function () {
       productDescription.value = "";
       productPrice.value = "";
       btn.innerText = "Add Product";
-      return;  
+      return;
     };
+    
 
     let card = document.createElement("div");
     card.classList.add("bg-green-300", "shadow", "p-4", "rounded-lg","border-2", "border-green-500","break-words","w-full");
     let heading = document.createElement("h2");
     heading.textContent = name;
-    let description = document.createElement("p");
+    let description = document.createElement("p"); 
     description.textContent = desc;
     let priceElement = document.createElement("h3");
     priceElement.textContent = price;
@@ -58,4 +65,4 @@ btn.addEventListener("click", function () {
     productName.value = "";
     productDescription.value = "";
     productPrice.value = "";
-});
+});   
